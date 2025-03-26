@@ -26,7 +26,19 @@ return {
 
         },
       },
-      accept = { auto_brackets = { enabled = false } },
+      accept = {
+        auto_brackets = {
+          enabled = true,
+          default_brackets = { '(', ')' },
+          kind_resolution = { enabled = true },
+          semantic_token_resolution = {
+            enabled = true,
+            blocked_filetypes = { '' },
+            -- How long to wait for semantic tokens to return before assuming no brackets should be added
+            timeout_ms = 300,
+          },
+        },
+      },
     },
 
 

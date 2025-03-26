@@ -122,17 +122,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagn
 
 -- LSP settings.
 
--- add auto completion
-vim.api.nvim_create_autocmd('LspAttach', {
-  callback = function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if client ~= nil and client:supports_method('textDocument/completion') then
-      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-    end
-  end,
-})
 
-vim.lsp.enable({ 'clangd' })
+
+vim.lsp.enable({ 'clangd', 'tsserver' })
+vim.o.winborder = 'rounded'
 
 
 --  This function gets run when an LSP connects to a particular buffer.

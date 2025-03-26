@@ -68,6 +68,8 @@ return {
 					"build",
 					"zig-out",
 					"zig-cache",
+					"deps",
+					"assets",
 					"%.class",
 					"^./.git/",
 					"^node_modules/",
@@ -99,7 +101,12 @@ return {
 		vim.keymap.set('n', '<leader>so', require('telescope.builtin').lsp_document_symbols,
 			{ desc = '[S]earch [O]utline' })
 
-		vim.keymap.set('n', '<leader>sm', require('telescope.builtin').man_pages,
-			{ desc = '[S]earch [M]an pages' })
+		local man = function()
+			require('telescope.builtin').man_pages({
+				sections = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
+			})
+		end
+
+		vim.keymap.set('n', '<leader>sm', man, { desc = '[S]earch [M]an pages' })
 	end
 }

@@ -8,8 +8,6 @@ vim.opt.colorcolumn = "80"
 
 
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 vim.cmd('set fileformat=unix')
 -- Normal setup

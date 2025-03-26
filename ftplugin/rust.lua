@@ -1,7 +1,3 @@
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-
 vim.bo.tabstop = 2      -- size of a hard tabstop (ts).
 vim.bo.shiftwidth = 2   -- size of an indentation (sw).
 vim.bo.expandtab = true -- always uses spaces instead of tab characters (et).

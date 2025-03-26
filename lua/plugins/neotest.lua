@@ -8,6 +8,7 @@ return {
     "nvim-neotest/neotest-jest",
     "rcasia/neotest-java",
     "nvim-neotest/neotest-go",
+    "lawrence-laz/neotest-zig",
     "jfpedroza/neotest-elixir"
   },
 
@@ -29,6 +30,11 @@ return {
         }),
         require('neotest-go'),
         require("neotest-elixir"),
+        require("neotest-zig")({
+          dap = {
+            adapter = "lldb",
+          }
+        }),
       },
     })
 

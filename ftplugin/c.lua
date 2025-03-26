@@ -6,8 +6,6 @@ vim.o.pumheight = 7
 
 vim.opt.colorcolumn = "80"
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 
 local root_dir = vim.fs.dirname(vim.fs.find({ '.git' }, { upward = true })[1])

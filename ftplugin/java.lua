@@ -186,16 +186,16 @@ local function jdtls_setup(event)
 
   path.data_dir = workspace_folder
 
-  if cache_vars.capabilities == nil then
-    jdtls.extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
-
-    local ok_cmp, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
-    cache_vars.capabilities = vim.tbl_deep_extend(
-      'force',
-      vim.lsp.protocol.make_client_capabilities(),
-      ok_cmp and cmp_lsp.default_capabilities() or {}
-    )
-  end
+  -- if cache_vars.capabilities == nil then
+  --   jdtls.extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
+  --
+  --   local ok_cmp, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
+  --   cache_vars.capabilities = vim.tbl_deep_extend(
+  --     'force',
+  --     vim.lsp.protocol.make_client_capabilities(),
+  --     ok_cmp and cmp_lsp.default_capabilities() or {}
+  --   )
+  -- end
 
   -- The command that starts the language server
   -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line

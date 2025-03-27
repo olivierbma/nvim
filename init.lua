@@ -10,7 +10,15 @@ vim.bo.expandtab = true
 vim.bo.softtabstop = 2
 vim.o.scrolloff = 9
 
-vim.diagnostic.config({ virtual_lines = true })
+vim.diagnostic.config({
+  virtual_lines = {
+    current_line = true,
+  },
+  virtual_text = true,
+  float = {
+    border = 'rounded'
+  }
+})
 
 
 
@@ -115,8 +123,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+vim.keymap.set('n', '[d', function()
+  vim.diagnostic.jump({ count = -1, float = true })
+end, { desc = "Go to previous diagnostic message" })
+vim.keymap.set('n', ']d', function()
+  vim.diagnostic.jump({ count = 1, float = true })
+end, { desc = "Go to next diagnostic message" })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
@@ -124,8 +136,12 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagn
 
 
 
-vim.lsp.enable({ 'clangd', 'tsserver' })
-vim.o.winborder = 'rounded'
+
+
+
+
+vim.lsp.enable({ 'clangd', 'tsserver', 'pyright', 'lua_ls' })
+-- vim.o.winborder = 'rounded'
 
 
 --  This function gets run when an LSP connects to a particular buffer.
@@ -177,7 +193,11 @@ vim.keymap.set('n', '<leader>rn', require('vim.lsp.buf').rename, { desc = 'LSP [
 vim.keymap.set('n', '<leader>ca', require('vim.lsp.buf').code_action, { desc = 'LSP [C]ode [A]ction' })
 vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, { desc = 'LSP [G]oto [R]eferences' })
 vim.keymap.set('n', '<leader>D', require('vim.lsp.buf').type_definition, { desc = 'LSP type [D]efinition' })
-vim.keymap.set('n', 'K', require('vim.lsp.buf').hover, { desc = 'LSP Hover Documentation' })
+
+vim.keymap.set('n', 'K', function()
+  require('vim.lsp.buf').hover({ border = 'rounded' })
+end, { desc = 'LSP Hover Documentation' })
+
 vim.keymap.set('n', '<C-K>', require('vim.lsp.buf').signature_help, { desc = 'LSP Signature Documentation' })
 vim.keymap.set('n', 'gD', require('vim.lsp.buf').declaration, { desc = 'LSP [G]oto [D]eclaration' })
 vim.keymap.set('n', 'gI', require('vim.lsp.buf').implementation, { desc = 'LSP [G]oto [I]plementation' })
@@ -185,8 +205,14 @@ vim.keymap.set('n', 'gd', require('vim.lsp.buf').definition, { desc = 'LSP [G]ot
 
 
 
--- Setup neovim lua configuration
-require("neodev").setup()
+
+
+
+
+
+
+
+
 
 
 
@@ -196,6 +222,8 @@ vim.keymap.set('n', 'gp', "<C-^>", { desc = "[G]oto [P]revious buffer" })
 
 -- Setup mason so it can manage external tooling
 require('mason').setup()
+
+
 
 
 

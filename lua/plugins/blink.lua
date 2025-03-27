@@ -9,7 +9,7 @@ return {
     keymap = {
       preset = 'enter',
       ['<TAB>'] = { 'select_next', 'fallback' },
-      ['<CR>'] = { 'accept' , 'select_and_accept',  'fallback' },
+      ['<CR>'] = { 'accept', 'select_and_accept', 'fallback' },
     },
 
     appearance = {
@@ -19,15 +19,19 @@ return {
 
 
     completion = {
-      documentation = { auto_show = true },
+      documentation = {
+        auto_show = true,
+        window = {
+          border = "rounded",
+        },
+      },
       menu = {
         draw = {
           columns = { { "kind_icon", "label", "label_description", gap = 1 }, { "kind" } },
-
         },
+        border = 'rounded',
       },
       accept = {
-        
         auto_brackets = {
           enabled = true,
           default_brackets = { '(', ')' },
@@ -42,10 +46,21 @@ return {
       },
     },
 
-snippets = { preset = 'luasnip' },
-sources = {
+    snippets = { preset = 'luasnip' },
+    sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
+      --, 'lazydev' },
+
+      providers = {
+        lazydev = {
+          name = "LazyDev",
+          module = "lazydev.integrations.blink",
+          -- make lazydev completions top priority (see `:h blink.cmp`)
+          score_offset = 100,
+        },
+      },
     },
+
 
 
 

@@ -22,5 +22,12 @@ return {
       }
 
     },
+    input = {
+      enabled = true,
+      prompt_pos = 'title'
+    },
+    picker = {
+      ui_select = true,
+    }
   }
 }

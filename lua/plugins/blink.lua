@@ -1,15 +1,15 @@
 return {
   'saghen/blink.cmp',
   -- optional: provides snippets for the snippet source
-  dependencies = { 'rafamadriz/friendly-snippets' },
+  dependencies = { "L3MON4D3/LuaSnip" },
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
     keymap = {
-      preset = 'default',
+      preset = 'enter',
       ['<TAB>'] = { 'select_next', 'fallback' },
-      ['<CR>'] = { 'accept', 'fallback' },
+      ['<CR>'] = { 'accept' , 'select_and_accept',  'fallback' },
     },
 
     appearance = {
@@ -27,6 +27,7 @@ return {
         },
       },
       accept = {
+        
         auto_brackets = {
           enabled = true,
           default_brackets = { '(', ')' },
@@ -41,10 +42,11 @@ return {
       },
     },
 
-
-    sources = {
+snippets = { preset = 'luasnip' },
+sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
     },
+
 
 
     fuzzy = {

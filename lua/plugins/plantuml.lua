@@ -3,6 +3,7 @@ return {
   'https://gitlab.com/itaranto/plantuml.nvim',
 
   dependencies = { 'javiorfo/nvim-nyctophilia' },
+  ft = { "markdown", "plantuml", "puml" },
 
   config = function()
     require('plantuml').setup({

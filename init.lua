@@ -137,10 +137,14 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagn
 
 
 
+local enabled_lsp = { 'clangd', 'ts_ls', 'pyright', 'lua_ls', 'tinymist',
+  'rust_analyzer', 'elixirls', 'gopls', 'jdtls',
+  'kotlin_language_server', 'neocmake', 'ocamllsp', 'zls', 'tailwindcss', 'nimls' }
 
 
 
-vim.lsp.enable({ 'clangd', 'tsserver', 'pyright', 'lua_ls' })
+vim.lsp.enable(enabled_lsp)
+
 -- vim.o.winborder = 'rounded'
 
 

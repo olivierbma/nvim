@@ -9,7 +9,7 @@ return {
     keymap = {
       preset = 'enter',
       ['<TAB>'] = { 'select_next', 'fallback' },
-      ['<CR>'] = { 'accept', 'select_and_accept', 'fallback' },
+      ['<CR>'] = { 'accept', 'fallback' },
     },
 
     appearance = {
@@ -19,6 +19,10 @@ return {
 
 
     completion = {
+      list = {
+        selection = { preselect = false, auto_insert = false }
+
+      },
       documentation = {
         auto_show = true,
         window = {

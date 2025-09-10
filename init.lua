@@ -1,8 +1,8 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-vim.g.fileencoding = 'utf-8'
-vim.bo.fileencoding = 'utf-8'
-vim.o.fileencoding = 'utf-8'
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+vim.g.fileencoding = "utf-8"
+vim.bo.fileencoding = "utf-8"
+vim.o.fileencoding = "utf-8"
 
 vim.bo.tabstop = 2
 vim.bo.shiftwidth = 2
@@ -10,48 +10,46 @@ vim.bo.expandtab = true
 vim.bo.softtabstop = 2
 vim.o.scrolloff = 9
 
+-- vim.o.winborder = 'rounded'
+vim.o.winborder = 'none'
+
 vim.diagnostic.config({
-  virtual_lines = {
-    current_line = true,
-  },
-  virtual_text = true,
-  float = {
-    border = 'rounded'
-  }
+	virtual_lines = {
+		current_line = true,
+	},
+	virtual_text = true,
+	float = {
+		border = "single",
+	},
 })
 
-
-
-vim.cmd(':se cursorline')
+vim.cmd(":se cursorline")
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system {
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
-    lazypath,
-  }
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
-
-
 
 -- NOTE: Here is where you install your plugins.
 --  You can configure plugins using the `config` key.
 --
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
-require('lazy').setup({
-  { import = "plugins" },
-  { import = "plugins.colorscheme" },
-  { import = "plugins.topbar" },
-  { import = "plugins.bottombar" }
-
+require("lazy").setup({
+	{ import = "plugins" },
+	{ import = "plugins.colorscheme" },
+	{ import = "plugins.topbar" },
+	{ import = "plugins.bottombar" },
 })
 
 -- [[ Setting options ]]
@@ -65,12 +63,12 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 
 -- Enable mouse mode
-vim.o.mouse = 'a'
+vim.o.mouse = "a"
 
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+vim.o.clipboard = "unnamedplus"
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -83,7 +81,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = "yes"
 
 -- Decrease update time
 vim.o.updatetime = 500
@@ -91,7 +89,7 @@ vim.o.timeout = true
 vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = "menuone,noselect"
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
@@ -100,146 +98,130 @@ vim.o.termguicolors = true
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 -- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	group = highlight_group,
+	pattern = "*",
 })
 
-
-
-
-
-
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', function()
-  vim.diagnostic.jump({ count = -1, float = true })
+vim.keymap.set("n", "[d", function()
+	vim.diagnostic.jump({ count = -1, float = true })
 end, { desc = "Go to previous diagnostic message" })
-vim.keymap.set('n', ']d', function()
-  vim.diagnostic.jump({ count = 1, float = true })
+vim.keymap.set("n", "]d", function()
+	vim.diagnostic.jump({ count = 1, float = true })
 end, { desc = "Go to next diagnostic message" })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- LSP settings.
 
+local enabled_lsp = { "clangd", "basedpyright", "neocmake", "bashls", "ast_grep", "omnisharp" } -- "csharp_ls_dotnet9"
 
+vim.lsp.config("csharp_ls_dotnet9", {
+	cmd = { "mise", "exec", "dotnet@9", "--", vim.fn.stdpath("data") .. "/mason/bin/csharp-ls" },
+	filetypes = { "cs" },
+	root_marker = { "global.json", "*.sln", "*.csproj" },
+	init_options = {
+		AutomaticWorkspaceInit = true,
+	},
+	-- Add other settings as needed
+	-- e.g., on_attach, capabilities, etc.
+})
 
-
-local enabled_lsp = { 'clangd', 'ts_ls', 'pyright', 'lua_ls', 'tinymist',
-  'rust_analyzer', 'elixirls', 'gopls', 'jdtls',
-  'kotlin_language_server', 'neocmake', 'ocamllsp', 'zls', 'tailwindcss', 'nimls' }
-
-
-
+vim.lsp.config("clangd", {
+	cmd = { "clangd", "--query-driver=/usr/bin/*gcc", "--compile-commands-dir=./build", "--query-driver=/usr/bin/arm-none-eabi-*" },
+	root_markers = { ".clangd", "compile_commands.json", ".git", ".jj" },
+	filetypes = { "c", "cpp" },
+})
 vim.lsp.enable(enabled_lsp)
 
--- vim.o.winborder = 'rounded'
+vim.api.nvim_create_user_command("LspInfo", "checkhealth vim.lsp", {})
 
 
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
-  -- NOTE: Remember that lua is a real programming language, and as such it is possible
-  -- to define small helper and utility functions so you don't have to repeat yourself
-  -- many times.
-  --
-  -- In this case, we create a function that lets us more easily define mappings specific
-  -- for LSP related items. It sets the mode, buffer and description for us each time.
-  local nmap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
+	-- NOTE: Remember that lua is a real programming language, and as such it is possible
+	-- to define small helper and utility functions so you don't have to repeat yourself
+	-- many times.
+	--
+	-- In this case, we create a function that lets us more easily define mappings specific
+	-- for LSP related items. It sets the mode, buffer and description for us each time.
+	local nmap = function(keys, func, desc)
+		if desc then
+			desc = "LSP: " .. desc
+		end
 
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-  end
+		vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+	end
 
+	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+	nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+	nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+	nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+	nmap("gI", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
+	nmap("<leader>D", vim.lsp.buf.type_definition, "Type [D]efinition")
+	nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+	nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
-  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+	-- See `:help K` for why this keymap
+	nmap("<C-k>", vim.lsp.buf.signature_help, "Signature Documentation")
 
-  -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-  -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  nmap('<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, '[W]orkspace [L]ist Folders')
-
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
+	-- Lesser used LSP functionality
+	nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+	nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
+	nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
+	nmap("<leader>wl", function()
+		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	end, "[W]orkspace [L]ist Folders")
 end
 
-vim.keymap.set('n', '<leader>rn', require('vim.lsp.buf').rename, { desc = 'LSP [R]e[N]ame' })
-vim.keymap.set('n', '<leader>ca', require('vim.lsp.buf').code_action, { desc = 'LSP [C]ode [A]ction' })
-vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, { desc = 'LSP [G]oto [R]eferences' })
-vim.keymap.set('n', '<leader>D', require('vim.lsp.buf').type_definition, { desc = 'LSP type [D]efinition' })
+vim.keymap.set("n", "<leader>gd", require("telescope.builtin").lsp_definitions, { desc = "[G]oto [D]efinition" })
 
-vim.keymap.set('n', 'K', function()
-  require('vim.lsp.buf').hover({ border = 'rounded' })
-end, { desc = 'LSP Hover Documentation' })
+vim.keymap.set(
+	"n",
+	"<leader>gi",
+	require("telescope.builtin").lsp_implementations,
+	{ desc = "[G]oto [I]mplementation" }
+)
 
-vim.keymap.set('n', '<C-K>', require('vim.lsp.buf').signature_help, { desc = 'LSP Signature Documentation' })
-vim.keymap.set('n', 'gD', require('vim.lsp.buf').declaration, { desc = 'LSP [G]oto [D]eclaration' })
-vim.keymap.set('n', 'gI', require('vim.lsp.buf').implementation, { desc = 'LSP [G]oto [I]plementation' })
-vim.keymap.set('n', 'gd', require('vim.lsp.buf').definition, { desc = 'LSP [G]oto [D]efinition' })
+vim.keymap.set("n", "<leader>gr", require("telescope.builtin").lsp_references, { desc = "[G]oto [R]eferences" })
 
+vim.keymap.set("n", "<leader>rn", require("vim.lsp.buf").rename, { desc = "LSP [R]e[N]ame" })
+vim.keymap.set("n", "<leader>ca", require("vim.lsp.buf").code_action, { desc = "LSP [C]ode [A]ction" })
+vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, { desc = "LSP [G]oto [R]eferences" })
+vim.keymap.set("n", "<leader>D", require("vim.lsp.buf").type_definition, { desc = "LSP type [D]efinition" })
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP type Hover" })
 
-
-
-
-
-
-
-
-
-
-
-
+vim.keymap.set("n", "<C-K>", require("vim.lsp.buf").signature_help, { desc = "LSP Signature Documentation" })
+vim.keymap.set("n", "gD", require("vim.lsp.buf").declaration, { desc = "LSP [G]oto [D]eclaration" })
+vim.keymap.set("n", "gI", require("vim.lsp.buf").implementation, { desc = "LSP [G]oto [I]plementation" })
+vim.keymap.set("n", "gd", require("vim.lsp.buf").definition, { desc = "LSP [G]oto [D]efinition" })
 
 -- Buffer navigation keymaps
 
-vim.keymap.set('n', 'gp', "<C-^>", { desc = "[G]oto [P]revious buffer" })
+vim.keymap.set("n", "gp", "<C-^>", { desc = "[G]oto [P]revious buffer" })
 
 -- Setup mason so it can manage external tooling
-require('mason').setup()
+require("mason").setup()
 
-
-
-
-
-
-
-
-
-vim.keymap.set('n', '<C-i>', vim.lsp.buf.format, { desc = 'format the current buffer' })
-
+vim.keymap.set("n", "<C-i>", function()
+	require("conform").format({ async = true, lsp_format = "fallback" })
+end, { desc = "Format buffer" })
 
 -- autocomands
-
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

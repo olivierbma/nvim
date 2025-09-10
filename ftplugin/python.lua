@@ -1,9 +1,9 @@
 local home = "C:/Users/Olivier/"
 
-local dapp = require('dap-python')
-dapp.setup(home .. "AppData\\Local\\nvim-data\\mason\\packages\\debugpy\\venv\\Scripts\\python.exe")
-dapp.setup(vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python") -- Update this path
-
+-- local dapp = require('dap-python')
+-- dapp.setup(home .. "AppData\\Local\\nvim-data\\mason\\packages\\debugpy\\venv\\Scripts\\python.exe")
+-- dapp.setup(vim.fn.stdpath("data") .. "/mason/packages/debugpy/venv/bin/python") -- Update this path
+--
 
 
 

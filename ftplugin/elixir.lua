@@ -9,4 +9,3 @@ vim.cmd('set fileformat=unix')
 
 
 
--- require('lspconfig').elixirls.setup({})

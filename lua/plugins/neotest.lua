@@ -5,7 +5,7 @@ return {
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
     "nvim-treesitter/nvim-treesitter",
-    "nvim-neotest/neotest-jest",
+    -- "nvim-neotest/neotest-jest",
     "rcasia/neotest-java",
     "nvim-neotest/neotest-go",
     "lawrence-laz/neotest-zig",
@@ -15,14 +15,14 @@ return {
   config = function()
     require("neotest").setup({
       adapters = {
-        require('neotest-jest')({
-          jestCommand = "npm test --",
-          jestConfigFile = "jest.config.ts",
-          env = { CI = true },
-          cwd = function(path)
-            return vim.fn.getcwd()
-          end,
-        }),
+--        require('neotest-jest')({
+--          jestCommand = "npm test --",
+--          jestConfigFile = "jest.config.ts",
+--          env = { CI = true },
+--          cwd = function(path)
+--            return vim.fn.getcwd()
+--         end,
+--        }),
         require('neotest-java')({
           ignore_wrapper = false, -- whether to ignore maven/gradle wrapper
           junit_jar = vim.fn.glob(vim.fn.stdpath("data") .. "/neotest-java/junit-platform-console-standalone-*.jar"),

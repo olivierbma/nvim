@@ -14,29 +14,6 @@ vim.g.typst_pdf_viewer = "evince"
 vim.cmd("set synmaxcol=80")
 
 
--- require('lspconfig').typst_lsp.setup {
--- 	settings = {
--- 		exportPdf = "never" -- Choose onType, onSave or never.
--- 		-- serverPath = "" -- Normally, there is no need to uncomment it.
--- 	}
--- }
-
-
-require('lspconfig').ltex.setup({
-	filetypes = { "vimwiki", "markdown", "md", "pandoc", "vimwiki.markdown.pandoc" }, --"typst"-- },
-	flags = { debounce_text_changes = 300 },
-	settings = {
-		ltex = {
-			-- language = "en"
-			language = "fr"
-		}
-	},
-})
-
-require('lspconfig').tinymist.setup {
-	offset_encoding = "utf-8",
-}
-
 require 'typst-preview'.setup {
 	-- Setting this true will enable printing debug information with print()
 	debug = false,

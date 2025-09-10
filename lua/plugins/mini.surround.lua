@@ -6,8 +6,10 @@ return {
 	-- 		-- Configuration here, or leave empty to use defaults
 	-- 	})
 	-- end
-	'echasnovski/mini.surround',
+	'nvim-mini/mini.surround',
 	config = function()
-		require("mini.surround").setup()
+		require("mini.surround").setup({
+
+		})
 	end
 }

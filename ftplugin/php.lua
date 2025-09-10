@@ -1,6 +1,3 @@
-require('lspconfig').intelephense.setup {
-  capabilities = vim.lsp.protocol.make_client_capabilities(vim.lsp),
-}
 
 
 require('telescope').setup({

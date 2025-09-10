@@ -7,4 +7,3 @@ vim.o.pumheight = 7
 vim.opt.colorcolumn = "80"
 vim.cmd('set fileformat=unix')
 
-require('lspconfig').gleam.setup({})

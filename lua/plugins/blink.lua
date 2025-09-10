@@ -26,14 +26,14 @@ return {
       documentation = {
         auto_show = true,
         window = {
-          border = "rounded",
+          border = "single",
         },
       },
       menu = {
         draw = {
           columns = { { "kind_icon", "label", "label_description", gap = 1 }, { "kind" } },
         },
-        border = 'rounded',
+        border = 'none',
       },
       accept = {
         auto_brackets = {
@@ -55,31 +55,31 @@ return {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
       --, 'lazydev' },
 
-      providers = {
-        lazydev = {
-          name = "LazyDev",
-          module = "lazydev.integrations.blink",
-          -- make lazydev completions top priority (see `:h blink.cmp`)
-          score_offset = 100,
-        },
-      },
+      -- providers = {
+      --   lazydev = {
+      --     name = "LazyDev",
+      --     module = "lazydev.integrations.blink",
+      --     -- make lazydev completions top priority (see `:h blink.cmp`)
+      --     score_offset = 100,
+      --   },
+      -- },
     },
 
 
 
 
     fuzzy = {
-      implementation = "prefer_rust_with_warning",
+      implementation = "prefer_rust",
       prebuilt_binaries = {
         download = true,
 
         ignore_version_mismatch = false,
 
-        force_version = "v1.0.0",
+        force_version = "1.7.0",
 
-        force_system_triple = nil,
+        -- force_system_triple = nil,
 
-        extra_curl_args = {}
+        -- extra_curl_args = {}
       },
     }
 

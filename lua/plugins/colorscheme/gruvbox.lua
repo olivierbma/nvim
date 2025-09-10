@@ -2,7 +2,7 @@ return {
   'ellisonleao/gruvbox.nvim',
   priority = 2000,
   config = function()
-    -- vim.cmd.colorscheme 'gruvbox'
+    vim.cmd.colorscheme 'gruvbox'
     local g = require("gruvbox")
 
     local p = g.palette

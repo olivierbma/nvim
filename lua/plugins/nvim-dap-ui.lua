@@ -1,7 +1,14 @@
 return {
 
 	"rcarriga/nvim-dap-ui",
-	dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio", "mfussenegger/nvim-dap-python" },
+	dependencies = {
+		"mfussenegger/nvim-dap",
+		"nvim-neotest/nvim-nio",
+		-- "mfussenegger/nvim-dap-python",
+		config = function()
+			-- require("dap-python").setup("uv")
+		end,
+	},
 	config = function()
 		--dap-ui dapui setup
 
@@ -18,73 +25,77 @@ return {
 					step_into = "",
 					step_out = "",
 					step_over = "",
-					terminate = ""
-				}
+					terminate = "",
+				},
 			},
 			element_mappings = {},
 			expand_lines = true,
 			floating = {
 				border = "single",
 				mappings = {
-					close = { "q", "<Esc>" }
-				}
+					close = { "q", "<Esc>" },
+				},
 			},
 			force_buffers = true,
 			icons = {
 				collapsed = "",
 				current_frame = "",
-				expanded = ""
+				expanded = "",
 			},
-			layouts = { {
-				elements = { {
-					id = "scopes",
-					size = 0.8
-				}, {
-					id = "stacks",
-					size = 0.2
-				}, },
-				position = "left",
-				size = 40
-			}, {
-				elements = { {
-					id = "console",
-					size = 0.65
-				}, {
-					id = "repl",
-					size = 0.35
-				}, },
-				position = "bottom",
-				size = 10
-			} },
+			layouts = {
+				{
+					elements = {
+						{
+							id = "scopes",
+							size = 0.8,
+						},
+						{
+							id = "stacks",
+							size = 0.2,
+						},
+					},
+					position = "left",
+					size = 40,
+				},
+				{
+					elements = {
+						{
+							id = "console",
+							size = 0.65,
+						},
+						{
+							id = "repl",
+							size = 0.35,
+						},
+					},
+					position = "bottom",
+					size = 10,
+				},
+			},
 			mappings = {
 				edit = "e",
 				expand = { "<CR>", "<2-LeftMouse>" },
 				open = "o",
 				remove = "d",
 				repl = "r",
-				toggle = "t"
+				toggle = "t",
 			},
 			render = {
 				indent = 1,
-				max_value_lines = 100
-			}
-		}
-		)
-
+				max_value_lines = 100,
+			},
+		})
 
 		local function conditional_breakpoint()
 			local cond = vim.fn.input("Breakpoint condition: ")
 			require("dap").set_breakpoint(cond)
 		end
 
-		vim.keymap.set("n", "<F9>", require('dap').toggle_breakpoint,
-			{ desc = 'Add or remove a breakpoint to a line' })
-		vim.keymap.set("n", "<F10>", require('dap').step_over, { desc = 'Execute function as a single command' })
-		vim.keymap.set("n", "<F11>", require('dap').step_into, { desc = 'Execute line and go to the next one' })
+		vim.keymap.set("n", "<F9>", require("dap").toggle_breakpoint, { desc = "Add or remove a breakpoint to a line" })
+		vim.keymap.set("n", "<F10>", require("dap").step_over, { desc = "Execute function as a single command" })
+		vim.keymap.set("n", "<F11>", require("dap").step_into, { desc = "Execute line and go to the next one" })
 
-		vim.keymap.set("n", "<C-F9>", conditional_breakpoint, { desc = 'Set a breakpoint with a condition' })
-
-
+		vim.keymap.set("n", "<C-F9>", conditional_breakpoint, { desc = "Set a breakpoint with a condition" })
 
 		local dap, dapui = require("dap"), require("dapui")
 		dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -97,6 +108,6 @@ return {
 			-- dapui.close()
 		end
 
-		vim.keymap.set('n', 'dq', dapui.close, { desc = "[D]ap-ui [Q]uit" })
-	end
+		vim.keymap.set("n", "dq", dapui.close, { desc = "[D]ap-ui [Q]uit" })
+	end,
 }

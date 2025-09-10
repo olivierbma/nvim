@@ -34,7 +34,6 @@ return {
 		-- 	end
 		-- end
 		require('ufo').setup()
-		require('ufo').setup()
 		--
 	end
 

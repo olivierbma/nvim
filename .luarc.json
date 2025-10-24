@@ -1,0 +1,7 @@
+{
+    "workspace.library": [
+        "/home/olivier/.local/share/nvim/lazy",
+        "${3rd}/luv/library",
+        "${3rd}/luassert/library"
+    ]
+}

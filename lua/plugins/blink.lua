@@ -20,7 +20,7 @@ return {
 
     completion = {
       list = {
-        selection = { preselect = false, auto_insert = false }
+        selection = { preselect = false, auto_insert = true }
 
       },
       documentation = {
@@ -69,7 +69,7 @@ return {
 
 
     fuzzy = {
-      implementation = "prefer_rust",
+      implementation = "prefer_rust_with_warning",
       prebuilt_binaries = {
         download = true,
 

@@ -9,7 +9,8 @@ return {
     "rcasia/neotest-java",
     "nvim-neotest/neotest-go",
     "lawrence-laz/neotest-zig",
-    "jfpedroza/neotest-elixir"
+    "jfpedroza/neotest-elixir",
+    "orjangj/neotest-ctest"
   },
 
   config = function()
@@ -34,6 +35,17 @@ return {
           dap = {
             adapter = "lldb",
           }
+        }),
+        require("neotest-ctest").setup({
+
+          is_test_file = function(file)
+            -- by default, returns true if the file stem ends with _test and the file extension is
+            -- one of cpp/cc/cxx.
+            local filename = file:match("([^/\\]+)$") -- Extracts the base filename
+            return string.match(filename, "test") or filename == "main.c" or filename == "main.cpp" or
+                filename == "main.cxx"
+          end,
+
         }),
       },
     })

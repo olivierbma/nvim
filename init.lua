@@ -125,26 +125,40 @@ end, { desc = "Go to next diagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
+
+
+-- Treesitter settings
+--
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+}
+
 -- LSP settings.
+--
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true
+}
 
-local enabled_lsp = { "clangd", "basedpyright", "neocmake", "bashls", "ast_grep", "omnisharp" } -- "csharp_ls_dotnet9"
-
-vim.lsp.config("csharp_ls_dotnet9", {
-	cmd = { "mise", "exec", "dotnet@9", "--", vim.fn.stdpath("data") .. "/mason/bin/csharp-ls" },
-	filetypes = { "cs" },
-	root_marker = { "global.json", "*.sln", "*.csproj" },
-	init_options = {
-		AutomaticWorkspaceInit = true,
-	},
-	-- Add other settings as needed
-	-- e.g., on_attach, capabilities, etc.
-})
 
 vim.lsp.config("clangd", {
 	cmd = { "clangd", "--query-driver=/usr/bin/*gcc", "--compile-commands-dir=./build", "--query-driver=/usr/bin/arm-none-eabi-*" },
 	root_markers = { ".clangd", "compile_commands.json", ".git", ".jj" },
 	filetypes = { "c", "cpp" },
 })
+ 
+ 
+ 
+local enabled_lsp = { 'clangd', 'ts_ls', 'pyright', 'lua_ls', 'tinymist',
+   'rust_analyzer', 'elixirls', 'gopls', 'jdtls',
+  'kotlin_language_server', 'neocmake', 'ocamllsp', 'zls', 'tailwindcss', 'nimls', "qmlls" }
+ 
+ 
+ 
 vim.lsp.enable(enabled_lsp)
 
 vim.api.nvim_create_user_command("LspInfo", "checkhealth vim.lsp", {})

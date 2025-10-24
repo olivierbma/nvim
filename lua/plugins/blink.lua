@@ -2,6 +2,7 @@ return {
   'saghen/blink.cmp',
   -- optional: provides snippets for the snippet source
   dependencies = { "L3MON4D3/LuaSnip" },
+  version = "1.*",
 
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
@@ -69,13 +70,15 @@ return {
 
 
     fuzzy = {
-      implementation = "prefer_rust_with_warning",
+      -- implementation = "prefer_rust_with_warning",
+      -- implementation = "prefer_rust",
+      implementation = "rust",
       prebuilt_binaries = {
         download = true,
 
         ignore_version_mismatch = false,
 
-        force_version = "1.7.0",
+        -- force_version = "1.7.0",
 
         -- force_system_triple = nil,
 
